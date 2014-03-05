@@ -1,3 +1,4 @@
-Welcome to my personal blog.
+Blogging Nero
+=========
 
-Reach me @nero.hu2011@gmail.com
+Welcome to my personal blog.Reach me at my[ gmail.](mailto:nero.hu2011@gmail.com "Nero Hu")
