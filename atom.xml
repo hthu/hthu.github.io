@@ -6,26 +6,26 @@
   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
   <channel>
     <title>Blogging Nero</title>
-    <link>http://nero-hu.github.io/</link>
+    <link>http://nero-hu.github.io</link>
     <description>Here is blog of Nero Hu</description>
     <pubDate>Sun, 08 Sep 2013 11:43:52 +0800</pubDate>
     <item>
       <title>EBS can’t compile invalid objects</title>
-      <link>http://nero-hu.github.io//2013/09/08/ebs-cant-compile.html</link>
+      <link>http://nero-hu.github.io/2013/09/08/ebs-cant-compile.html</link>
       <description>&lt;p&gt;Recently, I’ve working on an patch to add ASCP module to my EBS.
 But when I was appling the patch and compiling the invalid objects, it just stucks.&lt;/p&gt;
 </description>
       <pubDate>Sun, 08 Sep 2013 11:43:52 +0800</pubDate>
-      <guid>http://nero-hu.github.io//2013/09/08/ebs-cant-compile.html</guid>
+      <guid>http://nero-hu.github.io/2013/09/08/ebs-cant-compile.html</guid>
       <dc:date>2013-09-08T11:43:52+08:00</dc:date>
     </item>
     <item>
       <title>Thinking, Fast and Slow</title>
-      <link>http://nero-hu.github.io//2013/09/08/Thinking-fast-and-slow.html</link>
+      <link>http://nero-hu.github.io/2013/09/08/Thinking-fast-and-slow.html</link>
       <description>&lt;p&gt;Recently reading &lt;a href=&quot;http://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow&quot; title=&quot;Thinking, Fast and Slow&quot;&gt;[Thinking, Fast and Slow]&lt;/a&gt; by Daniel Kahneman, and I have to admit that this book really changes my views again, as intensively as another book I’ve read &lt;a href=&quot;http://ja.wikipedia.org/wiki/%E3%83%AD%E3%82%B8%E3%82%AB%E3%83%AB%E3%82%B7%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0&quot; title=&quot;Logical Thinking&quot;&gt;[Logical Thinking]&lt;/a&gt; who describes a tremendous way to break down problems called &lt;a href=&quot;http://en.wikipedia.org/wiki/MECE_principle&quot; title=&quot;MECE&quot;&gt;MECE&lt;/a&gt; (Mutually Exclusive, Collectively Exhaustive).&lt;/p&gt;
 </description>
       <pubDate>Sun, 08 Sep 2013 11:43:52 +0800</pubDate>
-      <guid>http://nero-hu.github.io//2013/09/08/Thinking-fast-and-slow.html</guid>
+      <guid>http://nero-hu.github.io/2013/09/08/Thinking-fast-and-slow.html</guid>
       <dc:date>2013-09-08T11:43:52+08:00</dc:date>
     </item>
     <dc:date>2013-09-08T11:43:52+08:00</dc:date>
