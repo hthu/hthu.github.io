@@ -5947,3 +5947,8 @@ button.close {
   padding-right:0.5em;
   padding-bottom:0.3em;
 }
+
+/*Blog Post */
+.blog-posts {
+  margin-bottom: 30px;
+}

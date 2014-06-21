@@ -3,17 +3,17 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>EBS can’t compile invalid objects</title>
+    <title>Turn a binary search tree to a sorted double linked list</title>
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Here is blog of Nero Hu" />
-    <link rel="canonical" href="http://nero-hu.github.io/2013/09/08/ebs-cant-compile.html/" />
+    <meta name="description" content="Blogging Nero" />
+    <link rel="canonical" href="http://localhost:4000/2014/04/11/turn-bstree-to-sorted-double-linked-list.html/" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href= "http://nero-hu.github.io/assets/css/bloggingnero.css">
-    <link rel="stylesheet" href= "http://nero-hu.github.io/assets/css/magnific-popup.css">
-
+    <link rel="stylesheet" href= "http://localhost:4000/assets/css/bloggingnero.css">
+    <link rel="stylesheet" href= "http://localhost:4000/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href= "http://localhost:4000/assets/css/highlight.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="http://nero-hu.github.io/assets/icons/favicon.ico" />
+    <link rel="shortcut icon" href="http://localhost:4000/assets/icons/favicon.ico" />
 </head>
 
     <body>
@@ -34,8 +34,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="http://nero-hu.github.io/projects">Projects</a></li>
-            <li><a href="http://nero-hu.github.io/about">About</a></li>
+            <li><a href="http://localhost:4000/projects">Projects</a></li>
+            <li><a href="http://localhost:4000/about">About</a></li>
             <!-- Comment dropdown for future use
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -62,60 +62,35 @@
           <div class="col-md-9" role="main">
           <div class="post">
 
-    <h1>EBS can’t compile invalid objects</h1>
-    <p class="meta">Sep 8, 2013</p>
+    <h1>Turn a binary search tree to a sorted double linked list</h1>
+    <p class="meta">Apr 11, 2014</p>
 
   <article class="post-content">
-  <p>Recently, I’ve working on an patch to add ASCP module to my EBS.
-But when I was appling the patch and compiling the invalid objects, it just stucks.</p>
+  <h4>Question:</h4>
 
-<p>At the first time, I thought it was just as normal and need some time,but after one-nights wait , I use the following SQL and just find the invalid objects just don’t get less.</p>
+<p>Turn a binary tree to a sorted double linked list.</p>
 
-<div class="highlight"><pre><code class="text language-text" data-lang="text">select status,count(*) from dba_objects group by status;
+<h4>Additional requirements</h4>
+
+<ul>
+<li>No New Nodes</li>
+<li>Only changes link direction</li>
+</ul>
+
+<h4>Solution</h4>
+
+<p><img src="http://localhost:4000/assets/BlogAttachment/Programming/Microsoft_InterView_Questions/Q1_TurnBSTreeIntoDoubleLinkedList" alt="image" title="BSTree Example"></p>
+
+<p>Use in-order traverse to get the sorted list, remember the previous node and change the link direction.</p>
+
+<p>Code example of in-order traverse.</p>
+
+<div class="highlight"><pre><code class="text language-text" data-lang="text">traverse(root.left)
+print(value)
+traverse(root.right)
 </code></pre></div>
 
-<p>Restart DB/Rebooting Server just didn’t help.
-So I checked the Database alert log file.
-Location:</p>
-
-<p><em>$ORACLE<em>HOME/admin/DEV</em>shmdev/diag/rdbms/dev/SID/alert</em></p>
-
-<p>And found the message which showed that the SYSAUX tablespace is not enough.</p>
-
-<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;msg time=’2013-01-18T14:06:02.569+08:00′ org_id=’oracle’ comp_id=’rdbms’ client_id=” type=’UNKNOWN’ level=’16′ host_id=’shmdev’ host_addr=’192.168.147.104′ module=” pid=’11937′&gt;
-&lt;txt&gt;
-ORA-1655: unable to extend table SYS.SMON_SCN_TO_TIME_AUX by 128 in tablespace SYSAUX
-&lt;/txt&gt;
-&lt;/msg&gt;
-</code></pre></div>
-
-<p>It is easy to figure out that we should extend our tablespace.
-Use following SQL to check our tablespace usage:</p>
-
-<div class="highlight"><pre><code class="text language-text" data-lang="text">select total.tablespace_name,
-round(total.MB, 2) as Total_MB,
-round(total.MB – free.MB, 2) as Used_MB,
-round((1 – free.MB / total.MB) * 100, 2) || ‘%’ as Used_Pct
-from 
-(
-    select tablespace_name, sum(bytes) / 1024 / 1024 as MB
-    from dba_free_space
-    group by tablespace_name
-    ) free,
-(
-    select tablespace_name, sum(bytes) / 1024 / 1024 as MB
-    from dba_data_files
-    group by tablespace_name
-    ) total
-where free.tablespace_name = total.tablespace_name;
-</code></pre></div>
-
-<p>Extend the SYSAUX tablespace:</p>
-
-<div class="highlight"><pre><code class="text language-text" data-lang="text">ALTER DATABASE DATAFILE ‘ /oracle/DEV/db/apps_st/data/sysaux01.dbf” AUTOEXTEND ON NEXT 100M MAXSIZE UNLIMITED;
-</code></pre></div>
-
-<p>And now we can compile the objects easily.</p>
+<h4>Code</h4>
 
   </article>
 </div>
@@ -140,24 +115,21 @@ where free.tablespace_name = total.tablespace_name;
           <div class="col-md-3">
             <div class="bs-docs-sidebar hidden-print affix" role="complementary">
             <ul class="nav bs-docs-sidenav" id="nav">
-            <div class="cloud">
-              
-            </div>
             <div><h4>Follow me</h4></div>
             <div>
-            <li><img src='http://nero-hu.github.io/assets/icons/sinaweibo_icon.jpg' style="padding:0 0 0 0"></img><a href='http://weibo.com/u/1275575005' style="margin-left:0.3em">Sina Weibo</a></li>
+            <li><img src='http://localhost:4000/assets/icons/sinaweibo_icon.jpg' style="padding:0 0 0 0"></img><a href='http://weibo.com/u/1275575005' style="margin-left:0.3em">Sina Weibo</a></li>
             </div>
             <div>
-            <li><img src='http://nero-hu.github.io/assets/icons/twitter_icon.jpg' style="padding:0 0 0 0"></img><a href='http://twitter.com/Nero_Hu' style="margin-left:0.3em; margin-top:0.1em">Twitter</a></li>
+            <li><img src='http://localhost:4000/assets/icons/twitter_icon.jpg' style="padding:0 0 0 0"></img><a href='http://twitter.com/Nero_Hu' style="margin-left:0.3em; margin-top:0.1em">Twitter</a></li>
             </div>
             <div>
-            <li><img src='http://nero-hu.github.io/assets/icons/facebook_icon.jpg' style="padding:0 0 0 0"></img><a href='http://www.facebook.com/nero.hu.3' style="margin-left:0.3em; margin-top:0.1em">Facebook</a></li>
+            <li><img src='http://localhost:4000/assets/icons/facebook_icon.jpg' style="padding:0 0 0 0"></img><a href='http://www.facebook.com/nero.hu.3' style="margin-left:0.3em; margin-top:0.1em">Facebook</a></li>
             </div>
             <div>
-            <li><img src='http://nero-hu.github.io/assets/icons/gmail_icon.png' style="padding:0 0 0 0"></img><a href='mailto:nero.hu2011@gmail.com' style="margin-left:0.3em; margin-top:0.1em">Gmail</a></li>
+            <li><img src='http://localhost:4000/assets/icons/gmail_icon.png' style="padding:0 0 0 0"></img><a href='mailto:nero.hu2011@gmail.com' style="margin-left:0.3em; margin-top:0.1em">Gmail</a></li>
             </div>
             <div>
-            <li><img src='http://nero-hu.github.io/assets/icons/rss_icon.jpeg' style="padding:0 0 0 0"></img><a href="http://nero-hu.github.io/atom.xml" class="rss" title="Subscribe" style="margin-left:0.3em; margin-top:0.1em">Subscribe</a></li>
+            <li><img src='http://localhost:4000/assets/icons/rss_icon.jpeg' style="padding:0 0 0 0"></img><a href="http://localhost:4000/atom.xml" class="rss" title="Subscribe" style="margin-left:0.3em; margin-top:0.1em">Subscribe</a></li>
             </div>
         <div>
             </ul>
@@ -170,7 +142,7 @@ where free.tablespace_name = total.tablespace_name;
         <!-- Page footer -->
     <footer>
       <div class="container-footer">
-      	<p style="margin: 20px 0 0 0">Copyright ©2014<a href="http://nero-hu.github.io/about/" title="More about me"> Nero Hu</a> under <a href="http://github.com/Nero-Hu/nero-hu.github.io/blob/master/Licenses">MIT Licencse</a></p>
+      	<p style="margin: 20px 0 0 0">Copyright ©2014<a href="http://localhost:4000/about/" title="More about me"> Nero Hu</a> under <a href="http://github.com/Nero-Hu/nero-hu.github.io/blob/master/Licenses">MIT Licencse</a></p>
       	</div>
       	<div>
       	<p>Powered by <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://getbootstrap.com/">bootstrap</a></p>
@@ -181,12 +153,12 @@ where free.tablespace_name = total.tablespace_name;
     <a href="https://github.com/Nero-hu"><img style="position: absolute; top: 52px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <!-- End of github icon-->
     <!-- Place at the end of the page to boost the load speed -->
-    <script src="http://nero-hu.github.io/assets/js/jquery.js"></script>
-    <script src="http://nero-hu.github.io/assets/js/bootstrap.js"></script>
-    <script src="http://nero-hu.github.io/assets/js/magnific-popup.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery.js"></script>
+    <script src="http://localhost:4000/assets/js/bootstrap.js"></script>
+    <script src="http://localhost:4000/assets/js/magnific-popup.js"></script>
     <!-- For single page navigation 
     later will be used
-    <script src="http://nero-hu.github.io/assets/js/jquery.nav.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery.nav.js"></script>
     <script type="application/javascript">
       $(document).ready(function() {
         $('#nav').onePageNav();
