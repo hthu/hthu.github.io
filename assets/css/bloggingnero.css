@@ -16,6 +16,8 @@ html {
 body {
   /* for sticky footer*/
   margin-bottom: 60px;
+  /* no horizotal scroll bar*/
+  overflow-x: hidden;
 }
 aside,
 details,
