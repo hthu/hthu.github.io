@@ -3,10 +3,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>EBS can’t compile invalid objects</title>
+    <title>Turn a binary search tree to a sorted double linked list</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Blogging Nero" />
-    <link rel="canonical" href="http://nero-hu.github.io/2013/09/08/ebs-cant-compile.html/" />
+    <link rel="canonical" href="http://nero-hu.github.io/2014/04/10/turn-bstree-to-sorted-double-linked-list.html/" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href= "http://nero-hu.github.io/assets/css/bloggingnero.css">
@@ -62,60 +62,35 @@
           <div class="col-md-9" role="main">
           <div class="post">
 
-    <h1>EBS can’t compile invalid objects</h1>
-    <p class="meta">Sep 8, 2013</p>
+    <h1>Turn a binary search tree to a sorted double linked list</h1>
+    <p class="meta">Apr 10, 2014</p>
 
   <article class="post-content">
-  <p>Recently, I’ve working on an patch to add ASCP module to my EBS.
-But when I was appling the patch and compiling the invalid objects, it just stucks.</p>
+  <h4>Question:</h4>
 
-<p>At the first time, I thought it was just as normal and need some time,but after one-nights wait , I use the following SQL and just find the invalid objects just don’t get less.</p>
+<p>Turn a binary tree to a sorted double linked list.</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">status</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">dba_objects</span> <span class="k">group</span> <span class="k">by</span> <span class="n">status</span><span class="p">;</span>
+<h4>Additional requirements</h4>
+
+<ul>
+<li>No New Nodes</li>
+<li>Only changes link direction</li>
+</ul>
+
+<h4>Solution</h4>
+
+<p><img src="http://nero-hu.github.io/assets/BlogAttachment/Programming/Microsoft_InterView_Questions/Q1_TurnBSTreeIntoDoubleLinkedList" alt="image" title="BSTree Example"></p>
+
+<p>Use in-order traverse to get the sorted list, remember the previous node and change the link direction.</p>
+
+<p>Code example of in-order traverse.</p>
+
+<div class="highlight"><pre><code class="text language-text" data-lang="text">traverse(root.left)
+print(value)
+traverse(root.right)
 </code></pre></div>
 
-<p>Restart DB/Rebooting Server just didn’t help.
-So I checked the Database alert log file.
-Location:</p>
-
-<p><em>$ORACLE<em>HOME/admin/DEV</em>shmdev/diag/rdbms/dev/SID/alert</em></p>
-
-<p>And found the message which showed that the SYSAUX tablespace is not enough.</p>
-
-<div class="highlight"><pre><code class="xml"><span class="nt">&lt;msg</span> <span class="na">time=</span><span class="s">’2013-01-18T14:06:02.569+08:00′</span> <span class="na">org_id=</span><span class="s">’oracle’</span> <span class="na">comp_id=</span><span class="s">’rdbms’</span> <span class="na">client_id=</span><span class="s">”</span> <span class="na">type=</span><span class="s">’UNKNOWN’</span> <span class="na">level=</span><span class="s">’16′</span> <span class="na">host_id=</span><span class="s">’shmdev’</span> <span class="na">host_addr=</span><span class="s">’192.168.147.104′</span> <span class="na">module=</span><span class="s">”</span> <span class="na">pid=</span><span class="s">’11937′</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;txt&gt;</span>
-    ORA-1655: unable to extend table SYS.SMON_SCN_TO_TIME_AUX by 128 in tablespace SYSAUX
-    <span class="nt">&lt;/txt&gt;</span>
-    <span class="nt">&lt;/msg&gt;</span>
-</code></pre></div>
-
-<p>It is easy to figure out that we should extend our tablespace.
-Use following SQL to check our tablespace usage:</p>
-
-<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Total_MB</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Used_MB</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">((</span><span class="mi">1</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span> <span class="o">/</span> <span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="err">‘</span><span class="o">%</span><span class="err">’</span> <span class="k">as</span> <span class="n">Used_Pct</span>
-    <span class="k">from</span> 
-    <span class="p">(</span>
-        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
-        <span class="k">from</span> <span class="n">dba_free_space</span>
-        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
-        <span class="p">)</span> <span class="k">free</span><span class="p">,</span>
-    <span class="p">(</span>
-        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
-        <span class="k">from</span> <span class="n">dba_data_files</span>
-        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
-        <span class="p">)</span> <span class="n">total</span>
-    <span class="k">where</span> <span class="k">free</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Extend the SYSAUX tablespace:</p>
-
-<div class="highlight"><pre><code class="sql"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">&#39;/oracle/DEV/db/apps_st/data/sysaux01.dbf&#39;</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span> <span class="k">NEXT</span> <span class="mi">100</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="n">UNLIMITED</span><span class="p">;</span>
-</code></pre></div>
-
-<p>And now we can compile the objects easily.</p>
+<h4>Code</h4>
 
   </article>
 </div>

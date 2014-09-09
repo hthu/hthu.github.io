@@ -3,10 +3,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Deploy Rime[Squirrel] on OS X</title>
+    <title>EBS can’t compile invalid objects</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Blogging Nero" />
-    <link rel="canonical" href="http://nero-hu.github.io/2014/04/18/Deploy-Squirrel-Guide.html/" />
+    <link rel="canonical" href="http://nero-hu.github.io/2013/09/07/ebs-cant-compile.html/" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href= "http://nero-hu.github.io/assets/css/bloggingnero.css">
@@ -62,58 +62,60 @@
           <div class="col-md-9" role="main">
           <div class="post">
 
-    <h1>Deploy Rime[Squirrel] on OS X</h1>
-    <p class="meta">Apr 18, 2014</p>
+    <h1>EBS can’t compile invalid objects</h1>
+    <p class="meta">Sep 7, 2013</p>
 
   <article class="post-content">
-  <h4>什么是中州韻</h4>
+  <p>Recently, I’ve working on an patch to add ASCP module to my EBS.
+But when I was appling the patch and compiling the invalid objects, it just stucks.</p>
 
-<p><a href="https://code.google.com/p/rimeime/" title="Rime">中州韻</a>輸入法引擎，思想用鍵盤表達也行。</p>
+<p>At the first time, I thought it was just as normal and need some time,but after one-nights wait , I use the following SQL and just find the invalid objects just don’t get less.</p>
 
-<h4>如何安装</h4>
-
-<p>下载<a href="https://code.google.com/p/rimeime/wiki/Downloads?tm=2" title="Download Rime">Squirrel</a>(Rime Mac Version)并且安装.pkg文件。</p>
-
-<h4>基础设置</h4>
-
-<p><strong>自定义输入配置文件</strong></p>
-
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Rime
-touch squirrel.custom.yaml
+<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">status</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">dba_objects</span> <span class="k">group</span> <span class="k">by</span> <span class="n">status</span><span class="p">;</span>
 </code></pre></div>
 
-<p>编辑<em>squirrel.custom.yaml</em>.</p>
+<p>Restart DB/Rebooting Server just didn’t help.
+So I checked the Database alert log file.
+Location:</p>
 
-<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">patch</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">style</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">horizontal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-    <span class="l-Scalar-Plain">font_point</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">14</span>
+<p><em>$ORACLE<em>HOME/admin/DEV</em>shmdev/diag/rdbms/dev/SID/alert</em></p>
+
+<p>And found the message which showed that the SYSAUX tablespace is not enough.</p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;msg</span> <span class="na">time=</span><span class="s">’2013-01-18T14:06:02.569+08:00′</span> <span class="na">org_id=</span><span class="s">’oracle’</span> <span class="na">comp_id=</span><span class="s">’rdbms’</span> <span class="na">client_id=</span><span class="s">”</span> <span class="na">type=</span><span class="s">’UNKNOWN’</span> <span class="na">level=</span><span class="s">’16′</span> <span class="na">host_id=</span><span class="s">’shmdev’</span> <span class="na">host_addr=</span><span class="s">’192.168.147.104′</span> <span class="na">module=</span><span class="s">”</span> <span class="na">pid=</span><span class="s">’11937′</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;txt&gt;</span>
+    ORA-1655: unable to extend table SYS.SMON_SCN_TO_TIME_AUX by 128 in tablespace SYSAUX
+    <span class="nt">&lt;/txt&gt;</span>
+    <span class="nt">&lt;/msg&gt;</span>
 </code></pre></div>
 
-<p>此配置将会覆盖默认安装目录下的<em>default.yaml</em>文件内的相应设置。</p>
+<p>It is easy to figure out that we should extend our tablespace.
+Use following SQL to check our tablespace usage:</p>
 
-<p>比如这里就将候选字体的大小设置为14，并且将候选模式设置为水平。</p>
-
-<p><strong>用户数据同步</strong></p>
-
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Rime
-vi installation.yaml
+<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Total_MB</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Used_MB</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">((</span><span class="mi">1</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span> <span class="o">/</span> <span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="err">‘</span><span class="o">%</span><span class="err">’</span> <span class="k">as</span> <span class="n">Used_Pct</span>
+    <span class="k">from</span> 
+    <span class="p">(</span>
+        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
+        <span class="k">from</span> <span class="n">dba_free_space</span>
+        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
+        <span class="p">)</span> <span class="k">free</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
+        <span class="k">from</span> <span class="n">dba_data_files</span>
+        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
+        <span class="p">)</span> <span class="n">total</span>
+    <span class="k">where</span> <span class="k">free</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">;</span>
 </code></pre></div>
 
-<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">sync_dir</span><span class="p-Indicator">:</span> <span class="s">&#39;/Dropbox/Rime-Settings&#39;</span>
+<p>Extend the SYSAUX tablespace:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">&#39;/oracle/DEV/db/apps_st/data/sysaux01.dbf&#39;</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span> <span class="k">NEXT</span> <span class="mi">100</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="n">UNLIMITED</span><span class="p">;</span>
 </code></pre></div>
 
-<p>** 修改上述设置后，需要重新部署squirrel才会生效。</p>
-
-<hr style="BORDER-BOTTOM-STYLE: dotted; BORDER-LEFT-STYLE: dotted; BORDER-RIGHT-STYLE: dotted; BORDER-TOP-STYLE: dotted" color="#000000" size=1>
-
-<p>参考:</p>
-
-<ol>
-<li><a href="https://code.google.com/p/rimeime/" title="Rime">Rime home page</a></li>
-<li><a href="https://code.google.com/p/rimeime/wiki/UserGuide" title="Rime User Guide">Rime User Guide</a></li>
-<li><a href="https://code.google.com/p/rimeime/wiki/CustomizationGuide" title="Rime Customization Guide">Rime Customization Guide</a></li>
-</ol>
+<p>And now we can compile the objects easily.</p>
 
   </article>
 </div>

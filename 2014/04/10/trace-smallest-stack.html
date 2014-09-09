@@ -3,10 +3,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Thinking, Fast and Slow</title>
+    <title>Trace the smallest element in a specially designed stack</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Blogging Nero" />
-    <link rel="canonical" href="http://nero-hu.github.io/2013/10/31/Thinking-fast-and-slow.html/" />
+    <link rel="canonical" href="http://nero-hu.github.io/2014/04/10/trace-smallest-stack.html/" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href= "http://nero-hu.github.io/assets/css/bloggingnero.css">
@@ -62,57 +62,45 @@
           <div class="col-md-9" role="main">
           <div class="post">
 
-    <h1>Thinking, Fast and Slow</h1>
-    <p class="meta">Oct 31, 2013</p>
+    <h1>Trace the smallest element in a specially designed stack</h1>
+    <p class="meta">Apr 10, 2014</p>
 
   <article class="post-content">
-  <p>Recently reading <a href="http://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" title="Thinking, Fast and Slow">[Thinking, Fast and Slow]</a> by Daniel Kahneman, and I have to admit that this book really changes my views again, as intensively as another book I’ve read <a href="http://ja.wikipedia.org/wiki/%E3%83%AD%E3%82%B8%E3%82%AB%E3%83%AB%E3%82%B7%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0" title="Logical Thinking">[Logical Thinking]</a> who describes a tremendous way to break down problems called <a href="http://en.wikipedia.org/wiki/MECE_principle" title="MECE">MECE</a> (Mutually Exclusive, Collectively Exhaustive).</p>
+  <h4>Question:</h4>
 
-<p>I’ve not completed this book yet, but there are many useful infos when you think.</p>
+<p>Design a stack, which owns a <em>min()</em> function that returns the smallest elements within the stack.</p>
 
-<h4>Two mechanisms</h4>
+<h4>Additional requirements</h4>
 
-<ul>
-<li>System 1: Fast, automatic, frequent, emotional, stereotypic, subconscious</li>
-<li>System 2: Slow, effortful, infrequent, logical, calculating, conscious</li>
-</ul>
+<p>Time complexity of <em>push()</em>, <em>pop()</em> and <em>min()</em> function should be <strong>O(1)</strong>.</p>
 
-<h4>We are borned lazy</h4>
+<h4>Solution</h4>
 
-<p>There is always a tendency to keep lazy, not only in our mind, but also in everything in the world. Everything stays at or tends to stay at a lowest center of gravity in normal conditions, animals keep evolving to save more energy, etc…
-Human being following the nature rules, and are inclined not to make efforts, if the System 1 could help us save a big part of daily problems.</p>
+<div style="margin-top: 10px; margin-bottom: -10px; margin-right: 0.5em"><img alt="solution" src="http://nero-hu.github.io/assets/blogattachment/programming/microsoft_interview_questions/Q1_TurnBSTreeIntoDoubleLinkedList.jpg" width="300" /></div>
+    
 
-<h4>We are blind to obvious, and of course blind to our blindness</h4>
+<h4>Code</h4>
 
-<p>Our efforts are limited, which means you will be blind to the things that beyond your efforts boundary. It is “obvious” that you are always missing something.</p>
+<p>The point should be in the function of <em>push()</em> shown as following code.</p>
 
-<h4>Substitution</h4>
-
-<p>We are always substitute the problems we asked with a more comfortable question to us.
-E.g: We could simply judge a person’s characteristics through his appearance, because we use the problem “how do you like this guy” instead of the question we asked.</p>
-
-<h4>We can be easily manipulated</h4>
-
-<p>Even the most small muscle change will cause your change of view.</p>
-
-<p><strong>Do not think that you are immune to be shaked!</strong> It can be done even without your attention.</p>
-
-<h4>Overconfidence</h4>
-
-<p>People are overconfident, especially to the area they familiar with.
-Actually, we act worse in the area we know most, because we tend to believe ourselves, not the facts.</p>
-
-<h4>Ignore our ignorance</h4>
-
-<p>The world is hard to be predicted, what you see is not the way the world works.</p>
-
-<h4>Regression toward the mean</h4>
-
-<p>It is an amazing way to adjust your expectation.
-You can not expect a continuous extreme good/bad luck in your performance.
-Please refer to <a href="http://en.wikipedia.org/wiki/Regression_toward_the_mean" title="Regression to the mean">wiki</a> for details.</p>
-
-<p><em>To be continued…</em></p>
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="n">NodeWithMin</span> <span class="nf">push</span><span class="o">(</span><span class="n">NodeWithMin</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// TODO Auto-generated method stub</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span><span class="o">;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span><span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">MinNode</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">MinNode</span><span class="o">;</span>
+            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span><span class="o">{</span>
+            <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span><span class="o">;</span>
+            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 
   </article>
 </div>
