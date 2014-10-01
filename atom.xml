@@ -8,16 +8,7 @@
     <title>Blogging Nero</title>
     <link>http://nero-hu.github.io</link>
     <description>Blogging Nero</description>
-    <pubDate>Sun, 14 Sep 2014 19:16:12 -0400</pubDate>
-    <item>
-      <title>Deploy Rime[Squirrel] on OS X</title>
-      <link>http://nero-hu.github.io/2014/09/14/pitfall-in-c-socket-programming.html</link>
-      <description>&lt;p&gt;&lt;em&gt;This post will be focused on blocked socket&lt;/em&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sun, 14 Sep 2014 19:16:12 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2014/09/14/pitfall-in-c-socket-programming.html</guid>
-      <dc:date>2014-09-14T19:16:12-04:00</dc:date>
-    </item>
+    <pubDate>Thu, 17 Apr 2014 17:32:00 -0400</pubDate>
     <item>
       <title>Deploy Rime[Squirrel] on OS X</title>
       <link>http://nero-hu.github.io/2014/04/17/Deploy-Squirrel-Guide.html</link>
@@ -70,6 +61,6 @@ But when I was appling the patch and compiling the invalid objects, it just stuc
       <guid>http://nero-hu.github.io/2013/09/07/ebs-cant-compile.html</guid>
       <dc:date>2013-09-07T23:43:52-04:00</dc:date>
     </item>
-    <dc:date>2014-09-14T19:16:12-04:00</dc:date>
+    <dc:date>2014-04-17T17:32:00-04:00</dc:date>
   </channel>
 </rss>
