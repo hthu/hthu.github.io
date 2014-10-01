@@ -6,59 +6,59 @@
   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
   <channel>
     <title>Blogging Nero</title>
-    <link>http://nero-hu.github.io</link>
+    <link>http://hthu.me</link>
     <description>Blogging Nero</description>
     <pubDate>Thu, 17 Apr 2014 17:32:00 -0400</pubDate>
     <item>
       <title>Deploy Rime[Squirrel] on OS X</title>
-      <link>http://nero-hu.github.io/2014/04/17/Deploy-Squirrel-Guide.html</link>
+      <link>http://hthu.me/2014/04/17/Deploy-Squirrel-Guide.html</link>
       <description>&lt;h4&gt;什么是中州韵&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://code.google.com/p/rimeime/&quot; title=&quot;Rime&quot;&gt;中州韵&lt;/a&gt;输入法引擎，思想用键盘表达也行。&lt;/p&gt;
 </description>
       <pubDate>Thu, 17 Apr 2014 17:32:00 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2014/04/17/Deploy-Squirrel-Guide.html</guid>
+      <guid>http://hthu.me/2014/04/17/Deploy-Squirrel-Guide.html</guid>
       <dc:date>2014-04-17T17:32:00-04:00</dc:date>
     </item>
     <item>
       <title>Trace the smallest element in a specially designed stack</title>
-      <link>http://nero-hu.github.io/2014/04/10/trace-smallest-stack.html</link>
+      <link>http://hthu.me/2014/04/10/trace-smallest-stack.html</link>
       <description>&lt;h4&gt;Question:&lt;/h4&gt;
 
 &lt;p&gt;Design a stack, which owns a &lt;em&gt;min()&lt;/em&gt; function that returns the smallest elements within the stack.&lt;/p&gt;
 </description>
       <pubDate>Thu, 10 Apr 2014 19:10:00 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2014/04/10/trace-smallest-stack.html</guid>
+      <guid>http://hthu.me/2014/04/10/trace-smallest-stack.html</guid>
       <dc:date>2014-04-10T19:10:00-04:00</dc:date>
     </item>
     <item>
       <title>Turn a binary search tree to a sorted double linked list</title>
-      <link>http://nero-hu.github.io/2014/04/10/turn-bstree-to-sorted-double-linked-list.html</link>
+      <link>http://hthu.me/2014/04/10/turn-bstree-to-sorted-double-linked-list.html</link>
       <description>&lt;h4&gt;Question:&lt;/h4&gt;
 
 &lt;p&gt;Turn a binary tree to a sorted double linked list.&lt;/p&gt;
 </description>
       <pubDate>Thu, 10 Apr 2014 17:47:52 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2014/04/10/turn-bstree-to-sorted-double-linked-list.html</guid>
+      <guid>http://hthu.me/2014/04/10/turn-bstree-to-sorted-double-linked-list.html</guid>
       <dc:date>2014-04-10T17:47:52-04:00</dc:date>
     </item>
     <item>
       <title>Thinking, Fast and Slow</title>
-      <link>http://nero-hu.github.io/2013/10/30/Thinking-fast-and-slow.html</link>
+      <link>http://hthu.me/2013/10/30/Thinking-fast-and-slow.html</link>
       <description>&lt;p&gt;Recently reading &lt;a href=&quot;http://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow&quot; title=&quot;Thinking, Fast and Slow&quot;&gt;[Thinking, Fast and Slow]&lt;/a&gt; by Daniel Kahneman, and I have to admit that this book really changes my views again, as intensively as another book I’ve read &lt;a href=&quot;http://ja.wikipedia.org/wiki/%E3%83%AD%E3%82%B8%E3%82%AB%E3%83%AB%E3%82%B7%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0&quot; title=&quot;Logical Thinking&quot;&gt;[Logical Thinking]&lt;/a&gt; who describes a tremendous way to break down problems called &lt;a href=&quot;http://en.wikipedia.org/wiki/MECE_principle&quot; title=&quot;MECE&quot;&gt;MECE&lt;/a&gt; (Mutually Exclusive, Collectively Exhaustive).&lt;/p&gt;
 </description>
       <pubDate>Wed, 30 Oct 2013 16:43:52 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2013/10/30/Thinking-fast-and-slow.html</guid>
+      <guid>http://hthu.me/2013/10/30/Thinking-fast-and-slow.html</guid>
       <dc:date>2013-10-30T16:43:52-04:00</dc:date>
     </item>
     <item>
       <title>EBS can’t compile invalid objects</title>
-      <link>http://nero-hu.github.io/2013/09/07/ebs-cant-compile.html</link>
+      <link>http://hthu.me/2013/09/07/ebs-cant-compile.html</link>
       <description>&lt;p&gt;Recently, I’ve working on an patch to add ASCP module to my EBS.
 But when I was appling the patch and compiling the invalid objects, it just stucks.&lt;/p&gt;
 </description>
       <pubDate>Sat, 07 Sep 2013 23:43:52 -0400</pubDate>
-      <guid>http://nero-hu.github.io/2013/09/07/ebs-cant-compile.html</guid>
+      <guid>http://hthu.me/2013/09/07/ebs-cant-compile.html</guid>
       <dc:date>2013-09-07T23:43:52-04:00</dc:date>
     </item>
     <dc:date>2014-04-17T17:32:00-04:00</dc:date>
