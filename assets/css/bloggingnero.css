@@ -5967,3 +5967,7 @@ button.close {
 .bookrec{
   margin-bottom: 10px;
 }
+
+.archive ul li{
+  display: block;
+}
