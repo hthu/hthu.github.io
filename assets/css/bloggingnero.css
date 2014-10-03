@@ -5927,10 +5927,10 @@ button.close {
     width:213px
   }
   .bs-docs-sidebar.affix{
-    position:fixed;
+    position:relative;
   }
   .bs-docs-sidebar.affix-bottom{
-    position:absolute
+    position:relative
   }
   .bs-docs-sidebar.affix-bottom .bs-docs-sidenav,
   .bs-docs-sidebar.affix .bs-docs-sidenav{
