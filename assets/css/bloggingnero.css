@@ -5861,7 +5861,7 @@ button.close {
 .bs-docs-sidebar.affix
 
 {
-  position:static
+  position:relative
   }
 @media (min-width:768px){
   .bs-docs-sidebar{
@@ -5962,4 +5962,8 @@ button.close {
 
 .tag span{
   padding-left: 5px;
+}
+
+.bookrec{
+  margin-bottom: 10px;
 }
