@@ -5951,7 +5951,14 @@ button.close {
 }
 
 /*Blog Post */
-.blog-posts
-{
+.blog-posts {
   margin-bottom: 30px;
+}
+
+.post-date {
+  color:#428bca;
+}
+
+.tag span{
+  padding-left: 5px;
 }

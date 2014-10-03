@@ -3,10 +3,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Curicculum Vitae</title>
+    <title>Bayesian inference for the Gaussian</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Blogging Nero" />
-    <link rel="canonical" href="http://hthu.me/about/cv.html/" />
+    <link rel="canonical" href="http://hthu.me/2014/10/02/Bayesian-inference-for-the-Gaussian.html/" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href= "http://hthu.me/assets/css/bloggingnero.css">
@@ -63,158 +63,46 @@
           <div class="col-md-9" role="main">
           <div class="post">
 
-  <header class="post-header">
-    <h1>Curicculum Vitae</h1>
-  </header>
+    <h1>Bayesian inference for the Gaussian</h1>
+    <p class="meta">Oct 2, 2014</p>
 
   <article class="post-content">
-  <p>Get a <a href="http://hthu.me/about/CV.pdf" title="PDF Version">PDF version</a>.</p>
+  <h3>Bayesian inference for the Gaussian</h3>
 
-<h3>Education</h3>
+<p>The Bayesian view of guassian introduce the prior distribution over the parameters 
+\( \mu \) and \( \sigma^2 \).</p>
 
-<hr/>
+<p>As under the IID assumption, the conditional likelihood should be:</p>
 
-<h5>Sept 2007 ~ Jul 2011</h5>
+<p>$$p(X|\mu) = \prod_{n=1}^Np(x_n|\mu) = \frac{1}{\sqrt{(2\pi\sigma^2)}}exp\{-\frac{1}{2\sigma^2}\sum_{n=1}^N(x_n-\mu)^2\}$$</p>
 
-<p>Bachelor of Engineer@<a href="http://en.wikipedia.org/wiki/Tongji_University" title="Tongji University">Tongji University</a></p>
+<p>Given the rule that the product of two gaussian distribution is still gaussian, we could selectively choose the prior \(p(\mu) \) to be a gaussian distribution.</p>
 
-<p><strong>Computer Science and Technology</strong></p>
+<p>$$p(\mu) = \mathcal{N}(\mu|\mu_0,\sigma_0^2)$$</p>
 
-<ul>
-<li>Discrete Mathematics, Higher Mathematics</li>
-<li>Algorithm Analysis, Data Structures, Computer Networks, Computer Graphics</li>
-<li>Database Principles, Operation Systems</li>
-</ul>
-
-<h3>Employment</h3>
-
-<hr/>
-
-<h5>Jul 2011 ~ present</h5>
-
-<p><a href="http://www.nssol-sh.com" title="NS Solutions CO.,Ltd.">NS Solutions (Shanghai) Co., Ltd.</a></p>
-
-<p><strong>System Engineer</strong></p>
-
-<ul>
-<li>Designed, developed, implemented applications from web-base to mobile client</li>
-<li>Researched and implemented core technics</li>
-<li>Analyzed customers&#39; needs, established solutions through logical thinking</li>
-</ul>
-
-<hr style="border:1px #cccccc dotted;"/>
-
-<h5>Feb 2011 ~ May 2011</h5>
-
-<p><a href="http://welcome.hp.com/country/cn/zh/welcome.html" title="HP">Shanghai Hewlett-Packard Co., Ltd.</a></p>
-
-<p><strong>Business Analyst</strong></p>
-
-<ul>
-<li>Designed and automatized reports, helped to analyze and deal with exception data</li>
-<li>Consolidated and migrated more than 350 kinds of reports to China reporting center</li>
-<li>Developed reporting tools to raise productivity</li>
-</ul>
-
-<hr style="border:1px #cccccc dotted;"/>
-
-<h5>Jul 2010 ~ Dec 2010</h5>
-
-<p><a href="http://www.altigen.com/" title="Altigen">AltiGen Communications Inc.</a></p>
-
-<p><strong>Software Engineer</strong></p>
-
-<ul>
-<li>Coordinated with QA testers for unit testing, found and fixed bugs</li>
-<li>Designed and developed integrated add-ons and features</li>
-</ul>
-
-<h3>Project &amp; Research Experience</h3>
-
-<hr/>
-
-<h5>Dec 2012 ~ Mar 2013</h5>
-
-<p>iOS SNS Application </p>
-
-<p><strong>Team Leader</strong></p>
-
-<ul>
-<li>Modeled, designed, implemented iOS application</li>
-<li>Investigated, selected, designed and constructed basic technical framework</li>
-<li>Defined logic data model and physical data model</li>
-</ul>
-
-<h5>Sept 2012 ~ Nov 2012</h5>
-
-<p>Research Service-oriented Architecture best implementation</p>
-
-<p><strong>Team Leader</strong></p>
-
-<ul>
-<li>Researched reusable model using Web Service</li>
-<li>Researched in-depth understanding on Web Service basic protocols</li>
-<li>Refined business model in purchase, defined standard interface</li>
-</ul>
-
-<hr style="border:1px #cccccc dotted;"/>
-
-<h5>Dec 2011 ~ Apr 2012</h5>
-
-<p>Shiseido Global ETL </p>
-
-<p><strong>System Engineer</strong></p>
-
-<ul>
-<li>Implemented ETL stage of BI importing processes</li>
-<li>Considered data structure of DWH &amp; DM</li>
-<li>Developed PL/SQL programs for transforming and cleaning data</li>
-</ul>
-
-<hr style="border:1px #cccccc dotted;"/>
-
-<h5>Dec 2011 ~ Apr 2012</h5>
-
-<p>Shimadzu Expense Managing System </p>
-
-<p><strong>System Engineer</strong></p>
-
-<ul>
-<li>Established a website which used to manage expense information</li>
-<li>Designed the whole website, from webpage to database</li>
-<li>Implemented the website from HTML, JavaScript to Java, SQL</li>
-</ul>
-
-<hr style="border:1px #cccccc dotted;"/>
-
-<h5>Feb 2011 – May 2011</h5>
-
-<p>RSS Based Web Search Engine </p>
-
-<p><strong>Developer</strong></p>
-
-<ul>
-<li>Developed a RSS based search engine</li>
-<li>Investigated deeply into RSS protocol standards,semantic analysis and full-text indexing</li>
-<li>Implemented whole website using JSP, JDBC, LUCENE, MySQL </li>
-</ul>
-
-<h3>Skills</h3>
-
-<hr/>
-
-<ul>
-<li><strong><em>Certifications</em></strong> : <a href="http://en.wikipedia.org/wiki/Oracle_Certification_Program" title="OCP">OCP</a></li>
-<li><strong><em>Systems</em></strong> : Linux, Windows, iOS </li>
-<li><strong><em>Software</em></strong>: Oracle, MySQL, Visual Studio 2005+, Eclipse, Tomcat, Apache, GIT, SVN </li>
-<li><strong><em>Networking</em></strong> : TCP/IP, Web Service, <a href="http://en.wikipedia.org/wiki/REST" title="REST">REST</a>,<a href="http://en.wikipedia.org/wiki/JSON" title="JSON">JSON</a></li>
-<li><strong><em>Programming Languages</em></strong>: Java, Objective-C, C++, C#, Ruby on Rails, PL/SQL, Linux Shell </li>
-<li><strong><em>Language</em></strong>: Chinese (good, native), English (good), Japanese (good)</li>
-</ul>
+<p>So, the posterior is proportional to conditional likelihood and prior.
+Use the gaussian product rule
+$$s$$
+we can get the new \( \mu_N and \sigma_N^2 \)</p>
 
   </article>
-
 </div>
+
+<!-- Add disqus thread for posts -->
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'bloggingnero'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
           <!-- start of right nav bar-->
           <div class="col-md-3">

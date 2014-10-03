@@ -34,6 +34,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li><a href="http://hthu.me/ml">Machine Learning</a></li>
             <li><a href="http://hthu.me/projects">Projects</a></li>
             <li><a href="http://hthu.me/about">About</a></li>
             <!-- Comment dropdown for future use
@@ -67,7 +68,38 @@
 </div>
     
   	<hr/>
-      <span><h3><a class="post-link" href="/2014/04/17/Deploy-Squirrel-Guide.html">Deploy Rime[Squirrel] on OS X</a></h3></span>
+      <span><h3><a class="post-link" href="/2014/10/02/Bayesian-inference-for-the-Gaussian.html">Bayesian inference for the Gaussian</a></h3></span>
+      <div class="blog-posts"><h3>Bayesian inference for the Gaussian</h3>
+
+<p>The Bayesian view of guassian introduce the prior distribution over the parameters 
+\( \mu \) and \( \sigma^2 \).</p>
+
+<p>As under the IID assumption, the conditional likelihood should be:</p>
+
+<p>$$p(X|\mu) = \prod_{n=1}^Np(x_n|\mu) = \frac{1}{\sqrt{(2\pi\sigma^2)}}exp\{-\frac{1}{2\sigma^2}\sum_{n=1}^N(x_n-\mu)^2\}$$</p>
+
+<p>Given the rule that the product of two gaussian distribution is still gaussian, we could selectively choose the prior \(p(\mu) \) to be a gaussian distribution.</p>
+
+<p>$$p(\mu) = \mathcal{N}(\mu|\mu_0,\sigma_0^2)$$</p>
+
+<p>So, the posterior is proportional to conditional likelihood and prior.
+Use the gaussian product rule
+$$s$$
+we can get the new \( \mu_N and \sigma_N^2 \)</p>
+</div>
+      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
+      
+      <span class="tag"><a href="/tags/PRML">PRML</a></span>
+      
+      <span class="tag"><a href="/tags/Machine Learning">Machine Learning</a></span>
+      
+      <span class="tag"><a href="/tags/Bishop">Bishop</a></span>
+      
+      </p>
+      <span class="post-date">Post at 02 Oct 2014</span>
+    
+  	<hr/>
+      <span><h3><a class="post-link" href="/2014/04/17/Deploy-Squirrel-Guide+copy.html">Deploy Rime[Squirrel] on OS X</a></h3></span>
       <div class="blog-posts"><h4>什么是中州韵</h4>
 
 <p><a href="https://code.google.com/p/rimeime/" title="Rime">中州韵</a>输入法引擎，思想用键盘表达也行。</p>
@@ -117,83 +149,14 @@ vi installation.yaml
 <li><a href="https://code.google.com/p/rimeime/wiki/CustomizationGuide" title="Rime Customization Guide">Rime Customization Guide</a></li>
 </ol>
 </div>
-      <span class="post-date">Post at : 17 Apr 2014</span>
+      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
       
-      <!-- <p><span class="label label-info">Tags:</span> Squirrel and Mac</p> -->
-    
-  	<hr/>
-      <span><h3><a class="post-link" href="/2014/04/10/trace-smallest-stack.html">Trace the smallest element in a specially designed stack</a></h3></span>
-      <div class="blog-posts"><h4>Question:</h4>
-
-<p>Design a stack, which owns a <em>min()</em> function that returns the smallest elements within the stack.</p>
-
-<h4>Additional requirements</h4>
-
-<p>Time complexity of <em>push()</em>, <em>pop()</em> and <em>min()</em> function should be <strong>O(1)</strong>.</p>
-
-<h4>Solution</h4>
-
-<div style="margin-top: 10px; margin-bottom: -10px; margin-right: 0.5em"><img alt="solution" src="http://hthu.me/assets/blogattachment/programming/microsoft_interview_questions/Q1_TurnBSTreeIntoDoubleLinkedList.jpg" width="300" /></div>
-    
-
-<h4>Code</h4>
-
-<p>The point should be in the function of <em>push()</em> shown as following code.</p>
-
-<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="n">NodeWithMin</span> <span class="nf">push</span><span class="o">(</span><span class="n">NodeWithMin</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// TODO Auto-generated method stub</span>
-    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
-        <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span><span class="o">;</span>
-        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">else</span><span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">MinNode</span> <span class="o">)</span> <span class="o">{</span>
-            <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">MinNode</span><span class="o">;</span>
-            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">else</span><span class="o">{</span>
-            <span class="n">item</span><span class="o">.</span><span class="na">MinNode</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">Node</span><span class="o">;</span>
-            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-</div>
-      <span class="post-date">Post at : 10 Apr 2014</span>
+      <span class="tag"><a href="/tags/Squirrel">Squirrel</a></span>
       
-      <!-- <p><span class="label label-info">Tags:</span> MCInterviewProjects</p> -->
-    
-  	<hr/>
-      <span><h3><a class="post-link" href="/2014/04/10/turn-bstree-to-sorted-double-linked-list.html">Turn a binary search tree to a sorted double linked list</a></h3></span>
-      <div class="blog-posts"><h4>Question:</h4>
-
-<p>Turn a binary tree to a sorted double linked list.</p>
-
-<h4>Additional requirements</h4>
-
-<ul>
-<li>No New Nodes</li>
-<li>Only changes link direction</li>
-</ul>
-
-<h4>Solution</h4>
-
-<p><img src="http://hthu.me/assets/BlogAttachment/Programming/Microsoft_InterView_Questions/Q1_TurnBSTreeIntoDoubleLinkedList" alt="image" title="BSTree Example"></p>
-
-<p>Use in-order traverse to get the sorted list, remember the previous node and change the link direction.</p>
-
-<p>Code example of in-order traverse.</p>
-
-<div class="highlight"><pre><code class="text language-text" data-lang="text">traverse(root.left)
-print(value)
-traverse(root.right)
-</code></pre></div>
-
-<h4>Code</h4>
-</div>
-      <span class="post-date">Post at : 10 Apr 2014</span>
+      <span class="tag"><a href="/tags/Mac">Mac</a></span>
       
-      <!-- <p><span class="label label-info">Tags:</span> MCInterviewProjects</p> -->
+      </p>
+      <span class="post-date">Post at 17 Apr 2014</span>
     
   	<hr/>
       <span><h3><a class="post-link" href="/2013/10/30/Thinking-fast-and-slow.html">Thinking, Fast and Slow</a></h3></span>
@@ -245,9 +208,14 @@ Please refer to <a href="http://en.wikipedia.org/wiki/Regression_toward_the_mean
 
 <p><em>To be continued…</em></p>
 </div>
-      <span class="post-date">Post at : 30 Oct 2013</span>
+      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
       
-      <!-- <p><span class="label label-info">Tags:</span> Reading and Thinking</p> -->
+      <span class="tag"><a href="/tags/Readin">Readin</a></span>
+      
+      <span class="tag"><a href="/tags/Thinking">Thinking</a></span>
+      
+      </p>
+      <span class="post-date">Post at 30 Oct 2013</span>
     
   	<hr/>
       <span><h3><a class="post-link" href="/2013/09/07/ebs-cant-compile.html">EBS can’t compile invalid objects</a></h3></span>
@@ -302,9 +270,16 @@ Use following SQL to check our tablespace usage:</p>
 
 <p>And now we can compile the objects easily.</p>
 </div>
-      <span class="post-date">Post at : 07 Sep 2013</span>
+      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
       
-      <!-- <p><span class="label label-info">Tags:</span> ERP, ORACLE, and DBA</p> -->
+      <span class="tag"><a href="/tags/ERP">ERP</a></span>
+      
+      <span class="tag"><a href="/tags/ORACLE">ORACLE</a></span>
+      
+      <span class="tag"><a href="/tags/DBA">DBA</a></span>
+      
+      </p>
+      <span class="post-date">Post at 07 Sep 2013</span>
     
 </div>
           </div>
@@ -354,6 +329,9 @@ Use following SQL to check our tablespace usage:</p>
     <script src="http://hthu.me/assets/js/jquery.js"></script>
     <script src="http://hthu.me/assets/js/bootstrap.js"></script>
     <script src="http://hthu.me/assets/js/magnific-popup.js"></script>
+    <!-- Math Support-->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
     <!-- For single page navigation 
     later will be used
     <script src="http://hthu.me/assets/js/jquery.nav.js"></script>
