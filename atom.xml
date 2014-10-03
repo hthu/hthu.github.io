@@ -8,16 +8,7 @@
     <title>Blogging Nero</title>
     <link>http://hthu.me</link>
     <description>Blogging Nero</description>
-    <pubDate>Thu, 02 Oct 2014 16:32:00 -0400</pubDate>
-    <item>
-      <title>Bayesian inference for the Gaussian</title>
-      <link>http://hthu.me/2014/10/02/Bayesian-inference-for-the-Gaussian.html</link>
-      <description>&lt;h3&gt;Bayesian inference for the Gaussian&lt;/h3&gt;
-</description>
-      <pubDate>Thu, 02 Oct 2014 16:32:00 -0400</pubDate>
-      <guid>http://hthu.me/2014/10/02/Bayesian-inference-for-the-Gaussian.html</guid>
-      <dc:date>2014-10-02T16:32:00-04:00</dc:date>
-    </item>
+    <pubDate>Thu, 17 Apr 2014 17:32:00 -0400</pubDate>
     <item>
       <title>Deploy Rime[Squirrel] on OS X</title>
       <link>http://hthu.me/2014/04/17/Deploy-Squirrel-Guide+copy.html</link>
@@ -48,6 +39,6 @@ But when I was appling the patch and compiling the invalid objects, it just stuc
       <guid>http://hthu.me/2013/09/07/ebs-cant-compile.html</guid>
       <dc:date>2013-09-07T23:43:52-04:00</dc:date>
     </item>
-    <dc:date>2014-10-02T16:32:00-04:00</dc:date>
+    <dc:date>2014-04-17T17:32:00-04:00</dc:date>
   </channel>
 </rss>

@@ -479,7 +479,7 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 0 0 5px;
 }
 .lead {
   margin-bottom: 20px;
@@ -5956,7 +5956,8 @@ button.close {
 }
 
 .post-date {
-  color:#428bca;
+  margin-bottom: -10px;
+  color:#BE8383;
 }
 
 .tag span{
