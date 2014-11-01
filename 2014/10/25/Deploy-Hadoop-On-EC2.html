@@ -3,10 +3,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Blogging Nero</title>
+    <title>Deploy Multi-Node Hadoop(YARN) on Amazon EC2</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Blogging Nero" />
-    <link rel="canonical" href="http://hthu.me//" />
+    <link rel="canonical" href="http://hthu.me/2014/10/25/Deploy-Hadoop-On-EC2.html/" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href= "http://hthu.me/assets/css/bloggingnero.css">
@@ -72,16 +72,13 @@
       <div class="page-content">
         <div class="wrap">
           <div class="col-md-9" role="main">
-          <div class="home">
-<h4>A random selection of photos from my <a href='http://www.flickr.com/photos/nerohu'>Flickr photo-stream</a>.</h4>
-  <div id='flickr_photos' class='flickr_photos'>
-<script src='http://www.flickr.com/badge_code_v2.gne?count=7&amp;display=random&amp;size=s&amp;layout=h&amp;source=user&amp;user=67899631@N04' type='text/javascript'></script>
-</div>
-    
-  	<hr/>
-  	  <span class="post-date">25 October, 2014</span>
-      <span><h3><a class="post-link" href="/2014/10/25/Deploy-Hadoop-On-EC2">Deploy Multi-Node Hadoop(YARN) on Amazon EC2</a></h3></span>
-      <div class="blog-posts"><p>As a need of setting a <a href="https://github.com/Nero-Hu/Bigdata_Project">big data project</a> environment and for future machine learning project, I started to setup a new <a href="http://hadoop.apache.org/releases.html">Hadoop2.x</a> (Known as YARN) on Amazon EC2 server, which gives me enough computing power. </p>
+          <div class="post">
+
+    <h1>Deploy Multi-Node Hadoop(YARN) on Amazon EC2</h1>
+    <p class="meta">Oct 25, 2014</p>
+
+  <article class="post-content">
+  <p>As a need of setting a <a href="https://github.com/Nero-Hu/Bigdata_Project">big data project</a> environment and for future machine learning project, I started to setup a new <a href="http://hadoop.apache.org/releases.html">Hadoop2.x</a> (Known as YARN) on Amazon EC2 server, which gives me enough computing power. </p>
 
 <p><em>Notes: Here I am doing the cluster installation.</em></p>
 
@@ -285,203 +282,25 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
 <li><p><a href="http://letsdobigdata.wordpress.com/2014/01/13/setting-up-hadoop-multi-node-cluster-on-amazon-ec2-part-1/">Setting up Hadoop multi-node cluster on Amazon EC2 Part 1</a></p></li>
 <li><p><a href="http://blog.c2b2.co.uk/2014/05/hadoop-v2-overview-and-cluster-setup-on.html">Hadoop v2 overview and cluster setup on Amazon EC2</a></p></li>
 </ol>
+
+  </article>
 </div>
-      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
-      
-      <span class="tag"><a href="/tags/Hadoop">Hadoop</a></span>
-      
-      <span class="tag"><a href="/tags/Big Data">Big Data</a></span>
-      
-      </p>
-     
-    
-  	<hr/>
-  	  <span class="post-date">17 April, 2014</span>
-      <span><h3><a class="post-link" href="/2014/04/17/Deploy-Squirrel-Guide">Deploy Rime[Squirrel] on OS X</a></h3></span>
-      <div class="blog-posts"><h3>什么是中州韵</h3>
 
-<p><a href="https://code.google.com/p/rimeime/" title="Rime">中州韵</a>输入法引擎，思想用键盘表达也行。</p>
+<!-- Add disqus thread for posts -->
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'bloggingnero'; // required: replace example with your forum shortname
 
-<h3>如何安装</h3>
-
-<p>下载<a href="https://code.google.com/p/rimeime/wiki/Downloads?tm=2" title="Download Rime">Squirrel</a>(Rime Mac Version)并且安装.pkg文件。</p>
-
-<h3>基础设置</h3>
-
-<p><strong>自定义输入配置文件</strong></p>
-
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Rime
-touch squirrel.custom.yaml
-</code></pre></div>
-
-<p>编辑<em>squirrel.custom.yaml</em>.</p>
-
-<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">patch</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">style</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">horizontal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-    <span class="l-Scalar-Plain">font_point</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">14</span>
-</code></pre></div>
-
-<p>此配置将会覆盖默认安装目录下的<em>default.yaml</em>文件内的相应设置。</p>
-
-<p>比如这里就将候选字体的大小设置为14，并且将候选模式设置为水平。</p>
-
-<p><strong>用户数据同步</strong></p>
-
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Rime
-vi installation.yaml
-</code></pre></div>
-
-<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">sync_dir</span><span class="p-Indicator">:</span> <span class="s">&#39;/Dropbox/Rime-Settings&#39;</span>
-</code></pre></div>
-
-<p>** 修改上述设置后，需要重新部署squirrel才会生效。</p>
-
-<hr style="BORDER-BOTTOM-STYLE: dotted; BORDER-LEFT-STYLE: dotted; BORDER-RIGHT-STYLE: dotted; BORDER-TOP-STYLE: dotted" color="#000000" size=1>
-
-<p>参考:</p>
-
-<ol>
-<li><a href="https://code.google.com/p/rimeime/" title="Rime">Rime home page</a></li>
-<li><a href="https://code.google.com/p/rimeime/wiki/UserGuide" title="Rime User Guide">Rime User Guide</a></li>
-<li><a href="https://code.google.com/p/rimeime/wiki/CustomizationGuide" title="Rime Customization Guide">Rime Customization Guide</a></li>
-</ol>
-</div>
-      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
-      
-      <span class="tag"><a href="/tags/Squirrel">Squirrel</a></span>
-      
-      <span class="tag"><a href="/tags/Mac">Mac</a></span>
-      
-      </p>
-     
-    
-  	<hr/>
-  	  <span class="post-date">30 October, 2013</span>
-      <span><h3><a class="post-link" href="/2013/10/30/Thinking-fast-and-slow">Thinking, Fast and Slow</a></h3></span>
-      <div class="blog-posts"><p>Recently reading <a href="http://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" title="Thinking, Fast and Slow">[Thinking, Fast and Slow]</a> by Daniel Kahneman, and I have to admit that this book really changes my views again, as intensively as another book I’ve read <a href="http://ja.wikipedia.org/wiki/%E3%83%AD%E3%82%B8%E3%82%AB%E3%83%AB%E3%82%B7%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0" title="Logical Thinking">[Logical Thinking]</a> who describes a tremendous way to break down problems called <a href="http://en.wikipedia.org/wiki/MECE_principle" title="MECE">MECE</a> (Mutually Exclusive, Collectively Exhaustive).</p>
-
-<p>I’ve not completed this book yet, but there are many useful infos when you think.</p>
-
-<h4>Two mechanisms</h4>
-
-<ul>
-<li>System 1: Fast, automatic, frequent, emotional, stereotypic, subconscious</li>
-<li>System 2: Slow, effortful, infrequent, logical, calculating, conscious</li>
-</ul>
-
-<h4>We are borned lazy</h4>
-
-<p>There is always a tendency to keep lazy, not only in our mind, but also in everything in the world. Everything stays at or tends to stay at a lowest center of gravity in normal conditions, animals keep evolving to save more energy, etc…
-Human being following the nature rules, and are inclined not to make efforts, if the System 1 could help us save a big part of daily problems.</p>
-
-<h4>We are blind to obvious, and of course blind to our blindness</h4>
-
-<p>Our efforts are limited, which means you will be blind to the things that beyond your efforts boundary. It is “obvious” that you are always missing something.</p>
-
-<h4>Substitution</h4>
-
-<p>We are always substitute the problems we asked with a more comfortable question to us.
-E.g: We could simply judge a person’s characteristics through his appearance, because we use the problem “how do you like this guy” instead of the question we asked.</p>
-
-<h4>We can be easily manipulated</h4>
-
-<p>Even the most small muscle change will cause your change of view.</p>
-
-<p><strong>Do not think that you are immune to be shaked!</strong> It can be done even without your attention.</p>
-
-<h4>Overconfidence</h4>
-
-<p>People are overconfident, especially to the area they familiar with.
-Actually, we act worse in the area we know most, because we tend to believe ourselves, not the facts.</p>
-
-<h4>Ignore our ignorance</h4>
-
-<p>The world is hard to be predicted, what you see is not the way the world works.</p>
-
-<h4>Regression toward the mean</h4>
-
-<p>It is an amazing way to adjust your expectation.
-You can not expect a continuous extreme good/bad luck in your performance.
-Please refer to <a href="http://en.wikipedia.org/wiki/Regression_toward_the_mean" title="Regression to the mean">wiki</a> for details.</p>
-
-<p><em>To be continued…</em></p>
-</div>
-      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
-      
-      <span class="tag"><a href="/tags/Reading">Reading</a></span>
-      
-      <span class="tag"><a href="/tags/Thinking">Thinking</a></span>
-      
-      </p>
-     
-    
-  	<hr/>
-  	  <span class="post-date">07 September, 2013</span>
-      <span><h3><a class="post-link" href="/2013/09/07/ebs-cant-compile">EBS can’t compile invalid objects</a></h3></span>
-      <div class="blog-posts"><p>Recently, I’ve working on an patch to add ASCP module to my EBS.
-But when I was appling the patch and compiling the invalid objects, it just stucks.</p>
-
-<p>At the first time, I thought it was just as normal and need some time,but after one-nights wait , I use the following SQL and just find the invalid objects just don’t get less.</p>
-
-<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">status</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">dba_objects</span> <span class="k">group</span> <span class="k">by</span> <span class="n">status</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Restart DB/Rebooting Server just didn’t help.
-So I checked the Database alert log file.
-Location:</p>
-
-<p><em>$ORACLE<em>HOME/admin/DEV</em>shmdev/diag/rdbms/dev/SID/alert</em></p>
-
-<p>And found the message which showed that the SYSAUX tablespace is not enough.</p>
-
-<div class="highlight"><pre><code class="xml"><span class="nt">&lt;msg</span> <span class="na">time=</span><span class="s">’2013-01-18T14:06:02.569+08:00′</span> <span class="na">org_id=</span><span class="s">’oracle’</span> <span class="na">comp_id=</span><span class="s">’rdbms’</span> <span class="na">client_id=</span><span class="s">”</span> <span class="na">type=</span><span class="s">’UNKNOWN’</span> <span class="na">level=</span><span class="s">’16′</span> <span class="na">host_id=</span><span class="s">’shmdev’</span> <span class="na">host_addr=</span><span class="s">’192.168.147.104′</span> <span class="na">module=</span><span class="s">”</span> <span class="na">pid=</span><span class="s">’11937′</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;txt&gt;</span>
-    ORA-1655: unable to extend table SYS.SMON_SCN_TO_TIME_AUX by 128 in tablespace SYSAUX
-    <span class="nt">&lt;/txt&gt;</span>
-    <span class="nt">&lt;/msg&gt;</span>
-</code></pre></div>
-
-<p>It is easy to figure out that we should extend our tablespace.
-Use following SQL to check our tablespace usage:</p>
-
-<div class="highlight"><pre><code class="sql"><span class="k">select</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Total_MB</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">(</span><span class="n">total</span><span class="p">.</span><span class="n">MB</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">Used_MB</span><span class="p">,</span>
-    <span class="n">round</span><span class="p">((</span><span class="mi">1</span> <span class="err">–</span> <span class="k">free</span><span class="p">.</span><span class="n">MB</span> <span class="o">/</span> <span class="n">total</span><span class="p">.</span><span class="n">MB</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="err">‘</span><span class="o">%</span><span class="err">’</span> <span class="k">as</span> <span class="n">Used_Pct</span>
-    <span class="k">from</span> 
-    <span class="p">(</span>
-        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
-        <span class="k">from</span> <span class="n">dba_free_space</span>
-        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
-        <span class="p">)</span> <span class="k">free</span><span class="p">,</span>
-    <span class="p">(</span>
-        <span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="k">as</span> <span class="n">MB</span>
-        <span class="k">from</span> <span class="n">dba_data_files</span>
-        <span class="k">group</span> <span class="k">by</span> <span class="n">tablespace_name</span>
-        <span class="p">)</span> <span class="n">total</span>
-    <span class="k">where</span> <span class="k">free</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="n">total</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Extend the SYSAUX tablespace:</p>
-
-<div class="highlight"><pre><code class="sql"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">&#39;/oracle/DEV/db/apps_st/data/sysaux01.dbf&#39;</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span> <span class="k">NEXT</span> <span class="mi">100</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="n">UNLIMITED</span><span class="p">;</span>
-</code></pre></div>
-
-<p>And now we can compile the objects easily.</p>
-</div>
-      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
-      
-      <span class="tag"><a href="/tags/ERP">ERP</a></span>
-      
-      <span class="tag"><a href="/tags/ORACLE">ORACLE</a></span>
-      
-      <span class="tag"><a href="/tags/DBA">DBA</a></span>
-      
-      </p>
-     
-    
-</div>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
           <!-- start of right nav bar-->
           <div class="col-md-3">

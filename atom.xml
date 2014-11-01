@@ -8,7 +8,16 @@
     <title>Blogging Nero</title>
     <link>http://hthu.me</link>
     <description>Blogging Nero</description>
-    <pubDate>Thu, 17 Apr 2014 17:32:00 -0400</pubDate>
+    <pubDate>Sat, 25 Oct 2014 17:32:00 -0400</pubDate>
+    <item>
+      <title>Deploy Multi-Node Hadoop(YARN) on Amazon EC2</title>
+      <link>http://hthu.me/2014/10/25/Deploy-Hadoop-On-EC2.html</link>
+      <description>&lt;p&gt;As a need of setting a &lt;a href=&quot;https://github.com/Nero-Hu/Bigdata_Project&quot;&gt;big data project&lt;/a&gt; environment and for future machine learning project, I started to setup a new &lt;a href=&quot;http://hadoop.apache.org/releases.html&quot;&gt;Hadoop2.x&lt;/a&gt; (Known as YARN) on Amazon EC2 server, which gives me enough computing power. &lt;/p&gt;
+</description>
+      <pubDate>Sat, 25 Oct 2014 17:32:00 -0400</pubDate>
+      <guid>http://hthu.me/2014/10/25/Deploy-Hadoop-On-EC2.html</guid>
+      <dc:date>2014-10-25T17:32:00-04:00</dc:date>
+    </item>
     <item>
       <title>Deploy Rime[Squirrel] on OS X</title>
       <link>http://hthu.me/2014/04/17/Deploy-Squirrel-Guide.html</link>
@@ -39,6 +48,6 @@ But when I was appling the patch and compiling the invalid objects, it just stuc
       <guid>http://hthu.me/2013/09/07/ebs-cant-compile.html</guid>
       <dc:date>2013-09-07T23:43:52-04:00</dc:date>
     </item>
-    <dc:date>2014-04-17T17:32:00-04:00</dc:date>
+    <dc:date>2014-10-25T17:32:00-04:00</dc:date>
   </channel>
 </rss>
