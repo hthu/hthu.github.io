@@ -80,7 +80,7 @@
     
   	<hr/>
   	  <span class="post-date">25 October, 2014</span>
-      <span><h3><a class="post-link" href="/2014/10/25/Deploy-Hadoop-On-EC2">Deploy Multi-Node Hadoop(YARN) on Amazon EC2</a></h3></span>
+      <span><h3><a class="post-link" href="/2014/10/25/Deploy-Hadoop2-On-EC2">Deploy Multi-Node Hadoop2 on EC2</a></h3></span>
       <div class="blog-posts"><p>As a need of setting a <a href="https://github.com/Nero-Hu/Bigdata_Project">big data project</a> environment and for future machine learning project, I started to setup a new <a href="http://hadoop.apache.org/releases.html">Hadoop2.x</a> (Known as YARN) on Amazon EC2 server, which gives me enough computing power. </p>
 
 <p><em>Notes: Here I am doing the cluster installation.</em></p>
@@ -275,7 +275,7 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
 <p>Test </p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">hadoop jar hadoop-mapreduce-examples-2.5.1.jar pi 10 1000000
 </code></pre></div>
-<p>You can see your result on your terminal, or you can go to the web interface through <strong>http://public_:dns:8088</strong>.</p></li>
+<p>You can see your result on your terminal, or you can go to the web interface through <strong>http://public_dns:8088</strong>.</p></li>
 </ul>
 
 <p><em>References</em></p>
