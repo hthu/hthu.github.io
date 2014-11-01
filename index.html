@@ -173,30 +173,29 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
 &lt;/configuration&gt;
 </code></pre></div>
 <p>Then $HADOOP_HOME/etc/hadoop/hdfs</p>
-
-<p><configuration>
-   <property>
-     <name>dfs.replication</name>
-     <value>1</value>
-   </property>
-   <property>
-     <name>dfs.permissions</name>
-     <value>false</value>
-   </property>
-  <property>
-     <name>dfs.namenode.name.dir</name>
-     <value>file:/home/ubuntu/hdfs/name</value>
-  </property>
-  <property>
-     <name>dfs.datanode.name.dir</name>
-     <value>file:/home/ubuntu/hdfs/data</value>
-  </property>
-  <property>
-     <name>dfs.webhdfs.enabled</name>
-     <value>true</value>
-  </property>
-</configuration></p>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;configuration&gt;
+   &lt;property&gt;
+     &lt;name&gt;dfs.replication&lt;/name&gt;
+     &lt;value&gt;1&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+     &lt;name&gt;dfs.permissions&lt;/name&gt;
+     &lt;value&gt;false&lt;/value&gt;
+   &lt;/property&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+     &lt;value&gt;file:/home/ubuntu/hdfs/name&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.datanode.name.dir&lt;/name&gt;
+     &lt;value&gt;file:/home/ubuntu/hdfs/data&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+     &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre></div>
 <p>Notice, you want your dfs.replication to be more than 1 on production system.</p></li>
 <li><p>YARN</p>
 
