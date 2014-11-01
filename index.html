@@ -195,40 +195,35 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
      &lt;value&gt;true&lt;/value&gt;
   &lt;/property&gt;
 &lt;/configuration&gt;
-</code></pre></div></li>
-</ul>
-
-<p>Notice, you want your dfs.replication to be more than 1 on production system.
-- YARN</p>
-
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Modify $HADOOP_HOME/etc/hadoop/yarn-site.xml
-
-    &lt;configuration&gt;
-    &lt;!-- Site specific YARN configuration properties --&gt;
-      &lt;property&gt;
-        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
-        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
-      &lt;/property&gt;
-      &lt;property&gt;
-        &lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;
-        &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
-      &lt;/property&gt;
-      &lt;property&gt;
-        &lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt;
-        &lt;value&gt;public_dns.com:8025&lt;/value&gt;
-      &lt;/property&gt;
-      &lt;property&gt;
-        &lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt;
-        &lt;value&gt;public_dns.com:8030&lt;/value&gt;
-      &lt;/property&gt;
-      &lt;property&gt;
-        &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;
-        &lt;value&gt;public_dns.com:8040&lt;/value&gt;
-      &lt;/property&gt;
-    &lt;/configuration&gt;
 </code></pre></div>
+<p>Notice, you want your dfs.replication to be more than 1 on production system.</p></li>
+<li><p>YARN</p>
 
-<ul>
+<p>Modify $HADOOP_HOME/etc/hadoop/yarn-site.xml</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;configuration&gt;
+&lt;!-- Site specific YARN configuration properties --&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt;
+    &lt;value&gt;public_dns.com:8025&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt;
+    &lt;value&gt;public_dns.com:8030&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;
+    &lt;value&gt;public_dns.com:8040&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre></div></li>
 <li><p>Map-Reduce</p>
 
 <p>Modify $HADOOP_HOME/etc/hadoop/mapred-site.xml</p>
