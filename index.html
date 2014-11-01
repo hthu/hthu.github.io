@@ -79,6 +79,84 @@
 </div>
     
   	<hr/>
+  	  <span class="post-date">01 November, 2014</span>
+      <span><h3><a class="post-link" href="/2014/11/01/Configure-Zsh-as-your-terminal">Configure zsh as your terminal on MAC</a></h3></span>
+      <div class="blog-posts"><p>After years of using Bash, I finally switch my default terminal to <a href="http://zsh.sourceforge.net/">Zsh</a>, which give me a way better experience, including more powerful autocomplete and directory jump. </p>
+
+<p>Actually there are a lot of existing solutions such as <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>, but it is too heavy. I don&#39;t want to many colorful prompts or autocorrections. I just need the pure simple useful functions that I want, so I customized my own profile with only one plugin <a href="https://github.com/joelthelion/autojump">autojump</a>. So far so good.</p>
+
+<h4>Use Zsh as your default terminal</h4>
+
+<div class="highlight"><pre><code class="bash">chsh -s zsh
+</code></pre></div>
+
+<h4>Set up your own zsh</h4>
+
+<div class="highlight"><pre><code class="bash">vi ~/.zshrc
+</code></pre></div>
+
+<p>Here are my settings.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c">#alias settings below</span>
+<span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls -G&#39;</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lah&#39;</span>
+
+<span class="c">#Autojump</span>
+<span class="o">[[</span> -s /Users/nerohu/.autojump/etc/profile.d/autojump.sh <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> /Users/nerohu/.autojump/etc/profile.d/autojump.sh
+
+<span class="c">#Zsh settings</span>
+<span class="nv">CASE_SENSITIVE</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+<span class="nv">ENABLE_CORRECTION</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+
+<span class="c">#PROMPT settings:</span>
+<span class="nv">PROMPT</span><span class="o">=</span><span class="s2">&quot;%n@%m:%c$ &quot;</span>
+
+<span class="c">#Command completion</span>
+autoload -U compinit
+compinit
+<span class="s2">&quot;.zshrc&quot;</span> 42L, 1132C
+<span class="c">#Command completion</span>
+autoload -U compinit
+compinit
+zstyle <span class="s1">&#39;:completion:*:descriptions&#39;</span> format <span class="s1">&#39;%U%B%d%b%u&#39;</span>
+<span class="c">#kill completion</span>
+<span class="c">#zstyle &#39;:completion:*:*:kill:*:processes&#39; list-colors &#39;=(#b) #([0-9]#)*=0=01;31&#39;</span>
+<span class="c">#zstyle &#39;:completion:*:kill:*&#39; command &#39;ps -u $USER -o pid,%cpu,tty,cputime,cmd&#39;</span>
+zstyle <span class="s1">&#39;:completion:*&#39;</span> list-prompt %SAt %p: Hit TAB <span class="k">for </span>more, or the character to insert%s
+<span class="c">#History size</span>
+<span class="nb">export </span><span class="nv">HISTSIZE</span><span class="o">=</span>10000
+<span class="nb">export </span><span class="nv">SAVEHIST</span><span class="o">=</span>10000
+<span class="c">#History file location</span>
+<span class="nb">export </span><span class="nv">HISTFILE</span><span class="o">=</span>~/.zshistory
+<span class="c">#Append</span>
+setopt INC_APPEND_HISTORY
+<span class="c">#Ignore continous duplicate</span>
+setopt HIST_IGNORE_DUPS
+
+<span class="c">#Bind keys</span>
+bindkey <span class="s1">&#39;^[[H&#39;</span> beginning-of-line
+bindkey <span class="s1">&#39;^[[F&#39;</span> end-of-line
+bindkey <span class="s2">&quot;^[[3~&quot;</span> delete-char
+</code></pre></div>
+
+<p>Some screenshot:</p>
+
+<h4>Auto complete on ssh</h4>
+
+<p><img src="http://hthu.me/assets/blogattachment/zsh/sshauto.png" alt="ssh autocomplete" style="width: 600px;"></img></p>
+
+<p><img src="http://hthu.me/assets/blogattachment/zsh/autojump.png" alt="autojump" style="width: 600px;"></img></p>
+</div>
+      <p><span><img src="http://hthu.me/assets/icons/tags.png" width="16"></span>
+      
+      <span class="tag"><a href="/tags/MAC">MAC</a></span>
+      
+      <span class="tag"><a href="/tags/Terminal">Terminal</a></span>
+      
+      </p>
+     
+    
+  	<hr/>
   	  <span class="post-date">25 October, 2014</span>
       <span><h3><a class="post-link" href="/2014/10/25/Deploy-Hadoop2-On-EC2">Deploy Multi-Node Hadoop2 on EC2</a></h3></span>
       <div class="blog-posts"><p>As a need of setting a <a href="https://github.com/Nero-Hu/Bigdata_Project">big data project</a> environment and for future machine learning project, I started to setup a new <a href="http://hadoop.apache.org/releases.html">Hadoop2.x</a> (Known as YARN) on Amazon EC2 server, which gives me enough computing power. </p>

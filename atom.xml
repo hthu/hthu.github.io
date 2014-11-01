@@ -8,7 +8,16 @@
     <title>Blogging Nero</title>
     <link>http://hthu.me</link>
     <description>Blogging Nero</description>
-    <pubDate>Sat, 25 Oct 2014 17:32:00 -0400</pubDate>
+    <pubDate>Sat, 01 Nov 2014 11:19:00 -0400</pubDate>
+    <item>
+      <title>Configure zsh as your terminal on MAC</title>
+      <link>http://hthu.me/2014/11/01/Configure-Zsh-as-your-terminal.html</link>
+      <description>&lt;p&gt;After years of using Bash, I finally switch my default terminal to &lt;a href=&quot;http://zsh.sourceforge.net/&quot;&gt;Zsh&lt;/a&gt;, which give me a way better experience, including more powerful autocomplete and directory jump. &lt;/p&gt;
+</description>
+      <pubDate>Sat, 01 Nov 2014 11:19:00 -0400</pubDate>
+      <guid>http://hthu.me/2014/11/01/Configure-Zsh-as-your-terminal.html</guid>
+      <dc:date>2014-11-01T11:19:00-04:00</dc:date>
+    </item>
     <item>
       <title>Deploy Multi-Node Hadoop2 on EC2</title>
       <link>http://hthu.me/2014/10/25/Deploy-Hadoop2-On-EC2.html</link>
@@ -48,6 +57,6 @@ But when I was appling the patch and compiling the invalid objects, it just stuc
       <guid>http://hthu.me/2013/09/07/ebs-cant-compile.html</guid>
       <dc:date>2013-09-07T23:43:52-04:00</dc:date>
     </item>
-    <dc:date>2014-10-25T17:32:00-04:00</dc:date>
+    <dc:date>2014-11-01T11:19:00-04:00</dc:date>
   </channel>
 </rss>
