@@ -783,7 +783,7 @@ pre code {
   padding-right: 15px;
   /* avoid overlay on body
   padding-top: 40px;*/
-  color:#1b8be0;
+  color:#428bca;
   border-top: 1px solid #e7e7e7;
 }
 @media (min-width: 768px) {
@@ -3824,7 +3824,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
     /* add customize color */
-    color:#1b8be0;
+    color:#428bca;
   }
 }
 .navbar-toggle {
@@ -3898,7 +3898,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-top: 15px;
     padding-bottom: 15px;
     /*add customize color*/
-    color: #1b8be0;
+    color: #428bca;
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -4018,7 +4018,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
-  color:#1b8be0;
+  color:#428bca;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -4029,7 +4029,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777777;
 }
 .navbar-default .navbar-nav > li > a {
-  color:#1b8be0;
+  color:#428bca;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -5883,19 +5883,19 @@ button.close {
 .bs-docs-sidebar .nav>li>a:hover,
 .bs-docs-sidebar .nav>li>a:focus{
   padding-left:19px;
-  color:#1b8be0;
+  color:#428bca;
   text-decoration:none;
   background-color:transparent;
-  border-left:1px solid #1b8be0
+  border-left:1px solid #428bca
 }
 .bs-docs-sidebar .nav>.active>a,
 .bs-docs-sidebar .nav>.active:hover>a,
 .bs-docs-sidebar .nav>.active:focus>a{
   padding-left:18px;
   font-weight:700;
-  color:#1b8be0;
+  color:#428bca;
   background-color:transparent;
-  border-left:2px solid #1b8be0
+  border-left:2px solid #428bca
 }
   .bs-docs-sidebar .nav .nav{
     display:none;
