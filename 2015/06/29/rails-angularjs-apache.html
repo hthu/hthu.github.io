@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Rails Angularjs Apache</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Haitang Hu" />
+    <link rel="canonical" href="http://hthu.me/2015/06/29/rails-angularjs-apache.html/" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href= "http://hthu.me/assets/css/bloggingnero.css">
+    <link rel="stylesheet" href= "http://hthu.me/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href= "http://hthu.me/assets/css/highlight.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://hthu.me/assets/icons/favicon.ico" />
+    <!-- google analytics-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-44940783-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+
+	<div class="container-fluid wiki">
+		<div class="wrapper">
+	    <h3>Deploy Rails + AngularJS on Apache</h3>
+
+<h4>Basic Architecture</h4>
+
+<ol>
+<li>Rails serve as REST API backend.</li>
+<li>AngularJS take care of routes and front-end.</li>
+<li>Apache host the web server using mod_proxy, which proxy to the default webrick server for rails.</li>
+<li>The server is RHEL 7.1, with Apache 2.4.</li>
+</ol>
+
+<h3>Rails Production Settings</h3>
+
+<h4>1. Production key</h4>
+
+<p>Generate your secret key.</p>
+
+<div class="highlight"><pre><code class="bash">rake secret
+</code></pre></div>
+ 
+
+<p>Either export it to your environment variable <code>SECRET_KEY_BASE</code>, or put it into <code>config/secret.yml</code>.</p>
+
+<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+<span class="err">  </span><span class="l-Scalar-Plain">secret_key_base</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">your_generated_key</span>
+</code></pre></div>
+ 
+
+<h4>2. Do not uglify JS</h4>
+
+<p>Dependency injection in angularJS might become problematic in production settings if we enable uglify JS. The real way to fix this is keep using following programming style while coding in angular.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;diskInfoControllers&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ngResource&#39;</span><span class="p">]);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;DiskInfoCtrl&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="s1">&#39;Disk&#39;</span><span class="p">,</span> <span class="s1">&#39;$location&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Disk</span><span class="p">,</span> <span class="nx">$location</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">disks</span> <span class="o">=</span> <span class="nx">Disk</span><span class="p">.</span><span class="nx">disks</span><span class="p">.</span><span class="nx">query</span><span class="p">();</span>
+
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">searchDisk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">serial</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">(</span><span class="nx">serial</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">editDisk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">serial</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">(</span><span class="nx">serial</span> <span class="o">+</span> <span class="s2">&quot;/edit&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">addDisk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">(</span><span class="s1">&#39;/new&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}]);</span>
+</code></pre></div>
+ 
+
+<p>Here we fix it by disabling the uglify JS in production settings in rails.</p>
+
+<p>Edit the config/environments/productions.rb.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">NoCompression</span>
+  <span class="k">def</span> <span class="nf">compress</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">string</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compress</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">js_compressor</span> <span class="o">=</span> <span class="no">NoCompression</span><span class="o">.</span><span class="n">new</span>
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">css_compressor</span> <span class="o">=</span> <span class="no">NoCompression</span><span class="o">.</span><span class="n">new</span>
+</code></pre></div>
+ 
+
+<h4>3. Asset settings</h4>
+
+<p>Edit the config/environments/productions.rb.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># following obsolete, consider using config.serve_static_files</span>
+<span class="n">config</span><span class="o">.</span><span class="n">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="c1"># Do not fallback to assets pipeline if a precompiled asset is missed.</span>
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compile</span> <span class="o">=</span> <span class="kp">true</span>
+</code></pre></div>
+ 
+
+<p>In application.rb.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">precompile</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;*.js&#39;</span><span class="p">,</span> <span class="s1">&#39;*.css&#39;</span><span class="o">]</span>
+</code></pre></div>
+ 
+
+<h3>Apache settings</h3>
+
+<div class="highlight"><pre><code class="apacheconf"><span class="c"># Load modules</span>
+<span class="nb">LoadModule</span> proxy_module modules/mod_proxy.so
+<span class="nb">LoadModule</span> proxy_balancer_module modules/mod_proxy_balancer.so
+<span class="nb">LoadModule</span> proxy_ftp_module modules/mod_proxy_ftp.so
+<span class="nb">LoadModule</span> proxy_http_module modules/mod_proxy_http.so
+<span class="nb">LoadModule</span> proxy_ajp_module modules/mod_proxy_ajp.so
+<span class="nb">LoadModule</span> proxy_connect_module modules/mod_proxy_connect.so
+
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+  <span class="c">#ServerName your.servername.com</span>
+  <span class="nb">ProxyRequests</span> <span class="k">Off</span>
+  <span class="nb">ProxyPreserveHost</span> <span class="k">On</span>
+
+  <span class="nt">&lt;Proxy</span> <span class="s">*</span><span class="nt">&gt;</span>
+    <span class="nb">Order</span> deny,allow
+    <span class="nb">Allow</span> from <span class="k">all</span>
+    <span class="nb">AuthType</span> <span class="k">None</span>
+  <span class="nt">&lt;/Proxy&gt;</span>
+
+  <span class="c"># rails request</span>
+  <span class="nb">ProxyPass</span> / http://localhost:3000/
+  <span class="nb">ProxyPassReverse</span> / http://localhost:3000/
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+
+<h3>RHEL 7 Settings</h3>
+
+<p>At last, you have two choice, disable the selinux or simply allow the port.</p>
+
+<p>Here I used the second one.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># Allow http port</span>
+firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>80/tcp --permanent
+<span class="c"># Allow rails webrick server port</span>
+semanage port -a -p tcp -t http_port_t 3000
+</code></pre></div>
+ 
+
+<p>Done.</p>
+
+		</div>
+	</div>
+
+	    <!-- Page footer -->
+    <footer>
+      <div class="container-footer">
+      	<p style="margin: 20px 0 0 0">Copyright ©2015<a href="http://hthu.me" title="More about me"> Haitang Hu</a> under <a href="https://github.com/Nero-Hu/nero-hu.github.io/blob/master/about/License">MIT Licencse</a></p>
+      	</div>
+      	<div>
+      	<p>Powered by <a href="http://jekyllrb.com">Jekyll</a> and <a href="http://getbootstrap.com/">bootstrap</a></p>
+      	</div>
+      </div>
+    </footer>  
+
+	<!-- End of github icon-->
+	<!-- Place at the end of the page to boost the load speed -->
+	<script src="http://hthu.me/assets/js/jquery.js"></script>
+	<script src="http://hthu.me/assets/js/bootstrap.js"></script>
+	<script src="http://hthu.me/assets/js/magnific-popup.js"></script>
+	<!-- Math Support-->
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</body>
+</html>
