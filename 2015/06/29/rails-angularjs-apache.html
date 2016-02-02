@@ -47,20 +47,20 @@
 
 <p>Generate your secret key.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">rake secret</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">rake secret</code></pre></figure>
  
 
 <p>Either export it to your environment variable <code>SECRET_KEY_BASE</code>, or put it into <code>config/secret.yml</code>.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-<span class="err">  </span><span class="l-Scalar-Plain">secret_key_base</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">your_generated_key</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+<span class="err">  </span><span class="l-Scalar-Plain">secret_key_base</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">your_generated_key</span></code></pre></figure>
  
 
 <h4>2. Do not uglify JS</h4>
 
 <p>Dependency injection in angularJS might become problematic in production settings if we enable uglify JS. The real way to fix this is keep using following programming style while coding in angular.</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;diskInfoControllers&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ngResource&#39;</span><span class="p">]);</span>
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;diskInfoControllers&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ngResource&#39;</span><span class="p">]);</span>
 
 <span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;DiskInfoCtrl&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="s1">&#39;Disk&#39;</span><span class="p">,</span> <span class="s1">&#39;$location&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Disk</span><span class="p">,</span> <span class="nx">$location</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$scope</span><span class="p">.</span><span class="nx">disks</span> <span class="o">=</span> <span class="nx">Disk</span><span class="p">.</span><span class="nx">disks</span><span class="p">.</span><span class="nx">query</span><span class="p">();</span>
@@ -76,14 +76,14 @@
   <span class="nx">$scope</span><span class="p">.</span><span class="nx">addDisk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">(</span><span class="s1">&#39;/new&#39;</span><span class="p">)</span>
   <span class="p">}</span>
-<span class="p">}]);</span></code></pre></div>
+<span class="p">}]);</span></code></pre></figure>
  
 
 <p>Here we fix it by disabling the uglify JS in production settings in rails.</p>
 
 <p>Edit the config/environments/productions.rb.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">NoCompression</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">NoCompression</span>
   <span class="k">def</span> <span class="nf">compress</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
     <span class="n">string</span>
   <span class="k">end</span>
@@ -91,27 +91,27 @@
 
 <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compress</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">js_compressor</span> <span class="o">=</span> <span class="no">NoCompression</span><span class="o">.</span><span class="n">new</span>
-<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">css_compressor</span> <span class="o">=</span> <span class="no">NoCompression</span><span class="o">.</span><span class="n">new</span></code></pre></div>
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">css_compressor</span> <span class="o">=</span> <span class="no">NoCompression</span><span class="o">.</span><span class="n">new</span></code></pre></figure>
  
 
 <h4>3. Asset settings</h4>
 
 <p>Edit the config/environments/productions.rb.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># following obsolete, consider using config.serve_static_files</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># following obsolete, consider using config.serve_static_files</span>
 <span class="n">config</span><span class="o">.</span><span class="n">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="c1"># Do not fallback to assets pipeline if a precompiled asset is missed.</span>
-<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compile</span> <span class="o">=</span> <span class="kp">true</span></code></pre></div>
+<span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compile</span> <span class="o">=</span> <span class="kp">true</span></code></pre></figure>
  
 
 <p>In application.rb.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">precompile</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;*.js&#39;</span><span class="p">,</span> <span class="s1">&#39;*.css&#39;</span><span class="o">]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">precompile</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;*.js&#39;</span><span class="p">,</span> <span class="s1">&#39;*.css&#39;</span><span class="o">]</span></code></pre></figure>
  
 
 <h3>Apache settings</h3>
 
-<div class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf"><span class="c"># Load modules</span>
+<figure class="highlight"><pre><code class="language-apacheconf" data-lang="apacheconf"><span class="c"># Load modules</span>
 <span class="nb">LoadModule</span> proxy_module modules/mod_proxy.so
 <span class="nb">LoadModule</span> proxy_balancer_module modules/mod_proxy_balancer.so
 <span class="nb">LoadModule</span> proxy_ftp_module modules/mod_proxy_ftp.so
@@ -133,7 +133,7 @@
   <span class="c"># rails request</span>
   <span class="nb">ProxyPass</span> / http://localhost:3000/
   <span class="nb">ProxyPassReverse</span> / http://localhost:3000/
-<span class="nt">&lt;/VirtualHost&gt;</span></code></pre></div>
+<span class="nt">&lt;/VirtualHost&gt;</span></code></pre></figure>
 
 <h3>RHEL 7 Settings</h3>
 
@@ -141,10 +141,10 @@
 
 <p>Here I used the second one.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Allow http port</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Allow http port</span>
 firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>80/tcp --permanent
 <span class="c"># Allow rails webrick server port</span>
-semanage port -a -p tcp -t http_port_t 3000</code></pre></div>
+semanage port -a -p tcp -t http_port_t 3000</code></pre></figure>
  
 
 <p>Done.</p>

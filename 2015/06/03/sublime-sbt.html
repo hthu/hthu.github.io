@@ -34,36 +34,36 @@
 
 <h4>Make a script <code>sbt-no-color</code> such that the sbt output could show correctly in sublime console.</h4>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">touch sbt-no-color</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">touch sbt-no-color</code></pre></figure>
  
 
 <p>And in that file, </p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
 <span class="nb">export </span><span class="nv">SBT_HOME</span><span class="o">=</span>/PATH/TO/sbt
-java -Dsbt.log.noformat<span class="o">=</span><span class="nb">true</span> -Dfile.encoding<span class="o">=</span>UTF8 <span class="nv">$JAVA_OPTS</span> -jar <span class="s2">&quot;${SBT_HOME}/bin/sbt-launch.jar&quot;</span> <span class="s2">&quot;$@&quot;</span></code></pre></div>
+java -Dsbt.log.noformat<span class="o">=</span><span class="nb">true</span> -Dfile.encoding<span class="o">=</span>UTF8 <span class="nv">$JAVA_OPTS</span> -jar <span class="s2">&quot;${SBT_HOME}/bin/sbt-launch.jar&quot;</span> <span class="s2">&quot;$@&quot;</span></code></pre></figure>
  
 
 <h4>Make a new build system in Sublime, naming <code>Scala.sublime-build</code></h4>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">{</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">{</span>
     <span class="s2">&quot;cmd&quot;</span>: <span class="o">[</span><span class="s2">&quot;/PATH/TO/sbt-no-color run&quot;</span><span class="o">]</span>,
     <span class="s2">&quot;file_regex&quot;</span>: <span class="s2">&quot;^\\[error\\] ([.a-zA-Z0-9/-]+[.]scala):([0-9]+):&quot;</span>,
     <span class="s2">&quot;selector&quot;</span>: <span class="s2">&quot;source.scala&quot;</span>,
     <span class="s2">&quot;working_dir&quot;</span>: <span class="s2">&quot;${project_path:${folder}}&quot;</span>,
     <span class="s2">&quot;shell&quot;</span>: <span class="s2">&quot;true&quot;</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
     
 
 <h4>Save the build system.</h4>
 
 <h4>Create a test file with <code>test.scala</code>.</h4>
 
-<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
     <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
         <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">)</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
     
 
 <h4>Hit <code>Super + b</code>, done.</h4>
